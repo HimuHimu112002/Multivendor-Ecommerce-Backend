@@ -1,0 +1,7 @@
+1 = First-Step --> nodemone, mongodb, mongoose, express, dotenv, crose --> aguli project install kore nite hobe.
+
+*** nodemone install korar karone package.json file debug section "start": "nodemone index.js" likhe nite hobe then npm start korte hobe.
+
+2 = Database Create kore nite hobe and database link .env file rakhte hobe then database folder kore tar majhe db.js file Create kore (const mongoose = require('mongoose')) set kore akti function likhe mongoose theke database connection code nite hobe then function er vhitore code rakhe (process.env.MONGODBURL) .env file theke url access korte hobe
+
+last kaj index.js file databse require kore nite hobe, then dotenv, cros
