@@ -6,7 +6,11 @@
 
 last kaj index.js file databse require kore nite hobe, then dotenv, cros
 
-================================ROUTES AND API CREATE =======================================
+================================ ROUTES AND API CREATE =======================================
 1 = First index.js routes er root intex.js require korte hobe and use korte hobe
     -> routes er root index.js er kaj holo api matching na korle error show korano akhane 
     duti api matching korte hobe akti base_url r akti holo all api jei index.js file thakbe mane api folder er index.js er routes matching korte hobe jodi matching kore tahole api er index.js jabe okhan theke main code jabe jemon authentication login ets. 
+
+
+================================= OTP =======================================================
+1 = Otp store korar jei section sekhane otp access hoi and set mongodb defualt function use    korar karone database store hoi so otpStore er main kaj holo $set er maddhome database dynamic vabe store kora and jodi amra fullname email er moto kore database pathai tahole dynamic hobena handcode korte hobe jeguli dynamic handcode sara database jabe tader $set er maddhome database pathate hobe
