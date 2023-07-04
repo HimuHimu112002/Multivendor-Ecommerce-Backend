@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const User = require("../model/usersModel.js")
+const Product = require("../model/productModel.js")
+const Variant = require("../model/varientModel.js")
+
 
 async function sequreProductUpload(req, res, next){ 
 
@@ -36,17 +39,31 @@ async function sequreProductUpload(req, res, next){
 }
 
 async function createProduct(req, res){
-    // let {productname,discription,image,store} = req.body
+    let {productname,discription,image,store} = req.body
 
-    // let product = new Product({
-    //     productname,
-    //     discription,
-    //     image,
-    //     store
-    // })
-    // product.save()
-    // res.send({Success:"product create successfull"})
+    let product = new Product({
+        productname,
+        discription,
+        image,
+        store
+    })
+    product.save()
+    //res.send({Success:"product create successfull"})
     return res.send({Success: "Product create successfull"})
 }
 
-module.exports = {sequreProductUpload,createProduct}
+async function createVariant(req, res){
+    let {variantname,image,product} = req.body
+
+    let variant = new Variant({
+        variantname,
+        image,
+        product
+    })
+    variant.save()
+    await Product.findOneAndUpdate({_id: variant.product}, {$push:{variants: variant._id}}, {new: true})
+    res.send({Success:"Variant create successfull"})
+}
+
+
+module.exports = {sequreProductUpload,createProduct,createVariant}
