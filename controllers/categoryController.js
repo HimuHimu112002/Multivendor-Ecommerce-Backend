@@ -51,7 +51,18 @@ async function SubCategoryController(req, res){
     })
 
     subcategorys.save()
+    console.log("sub",subcategorys._id)
+    console.log("sub-1",subcategorys.category)
+    console.log("sub-2",subcategorys._id)
+
     await Category.findOneAndUpdate({_id: subcategorys.category}, {$push:{subCategory: subcategorys._id}}, {new: true})
+
+    // akhane (Category.findOneAndUpdate) mane holo category er majhe update hobe (subcategorys.category:) diye category khujte hobe ati muloto category main id access kore thake(subcategorys._id) diye subcategory khujte hobe ati muloto subcategory main id access kore and category er majhe subCategory arry te push kore
+    
+    //1 = step-1 first kaj holo amra jei category te subcategory push korbo sei category main id access kora {_id: subcategorys.category} akhane jodi category main id khuje na pauya jai tahole subcategory push hobena.
+
+    //2 = step-2 abar amader subcategory main id ti access korte hobe and category er subcategory array te push korte hobe
+
     res.send({success: "Sub-Category Created Successfully"})
 
 }
