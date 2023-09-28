@@ -4,6 +4,7 @@ const DatabaseConnection = require('./database/database.js')
 require('dotenv').config()
 const cors = require('cors')
 const routes = require("./routes/index.js")
+const path = require('path')
 
 
 //app.use(express.urlencoded({extended:true}))
@@ -12,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 
 DatabaseConnection()
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use(routes)
 
 

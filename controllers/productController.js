@@ -1,5 +1,4 @@
 const express = require('express')
-const router = express.Router()
 const User = require("../model/usersModel.js")
 const Product = require("../model/productModel.js")
 const Variant = require("../model/varientModel.js")
@@ -48,17 +47,24 @@ async function createProduct(req, res){
         store
     })
     product.save()
-    //res.send({Success:"product create successfull"})
     return res.send({Success: "Product create successfull"})
+
 }
 
 async function createVariant(req, res){
-    let {variantname,image,product} = req.body
+    let {variantType,color,image,ram,storage,size,product,price,quantity} = req.body
 
     let variant = new Variant({
-        variantname,
-        image,
-        product
+        variantType,
+        color,
+        image: `${process.env.IMAGE_PATH}/uploads/${req.file.filename}`,
+        ram,
+        storage,
+        size,
+        product,
+        price,
+        quantity
+        
     })
     variant.save()
     await Product.findOneAndUpdate({_id: variant.product}, {$push:{variants: variant._id}}, {new: true})

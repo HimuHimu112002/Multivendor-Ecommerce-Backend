@@ -2,27 +2,41 @@ const mongoose = require("mongoose")
 const {Schema} = mongoose
 
 const VariantSchema = new Schema({
-    variantname:{
+    variantType:{
         type: String,
         require: true
+    },
+    color:{
+        type:String,
     },
     image:{
         type:String,
         require:true
     },
-    option:[
-        {
-            type: Schema.Types.ObjectId,
-            ref:"Option"
-        }
-    ],
-    store:{
-        type: Schema.Types.ObjectId,
-        ref: "Store"
+    ram:{
+        type:String,
     },
+    storage:{
+        type:String,
+        require:true
+    },
+    size:{
+        type:String,
+    },
+    price:{
+        type:String,
+    },
+    quantity:{
+        type:String,
+    },
+    // store:{
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Store"
+    // },
     product:{
         type: Schema.Types.ObjectId,
-        ref:"Product"
+        ref:"Product",
+        require: true
     },
     updated:{
         type: Date,
@@ -30,7 +44,6 @@ const VariantSchema = new Schema({
     created:{
         type: Date,
         default: Date.now,
-       
     },
 
 })
