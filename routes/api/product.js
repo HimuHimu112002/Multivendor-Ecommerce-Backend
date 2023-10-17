@@ -9,7 +9,8 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix + `.${file.originalname.split(".")[1]}`)
+      //console.log(file.originalname.split('.')[1])
+      cb(null, file.fieldname + '-' + uniqueSuffix + `.${file.originalname.split('.')[1]}`)
     }
   })
   
@@ -18,6 +19,6 @@ const upload = multer({ storage: storage })
 
 
 router.post("/CreateProduct",sequreProductUpload,createProduct)
-router.post("/CreateProductVarient",upload.single(''),createVariant)
+router.post("/CreateProductVarient",upload.single('image'),createVariant)
 
 module.exports = router

@@ -7,18 +7,16 @@ const routes = require("./routes/index.js")
 const path = require('path')
 
 
-//app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}))
 
 app.use(cors())
 app.use(express.json())
 
 DatabaseConnection()
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+// static image create korar jonno ja browser hit korle jeno image show kore
+
 app.use(routes)
-
-
-app.get('/TestFunc', function (req, res) {
-  res.send('Hello World')
-})
 
 app.listen(8000)
