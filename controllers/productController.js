@@ -37,6 +37,7 @@ async function sequreProductUpload(req, res, next){
          
 }
 
+
 async function createProduct(req, res){
     let {productname,discription,image,store} = req.body
 
@@ -50,6 +51,7 @@ async function createProduct(req, res){
     return res.send({Success: "Product create successfull"})
 
 }
+
 
 async function createVariant(req, res){
     let {variantType,color,image,ram,storage,size,product,price,quantity} = req.body
@@ -72,4 +74,9 @@ async function createVariant(req, res){
 }
 
 
-module.exports = {sequreProductUpload,createProduct,createVariant}
+
+async function GetAllProduct(req, res){
+    let data = await Product.find({}).populate("store")
+    res.send(data)
+}
+module.exports = {sequreProductUpload,createProduct,createVariant,GetAllProduct}
