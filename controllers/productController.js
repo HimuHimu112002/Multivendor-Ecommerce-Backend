@@ -52,6 +52,11 @@ async function createProduct(req, res){
 
 }
 
+async function GetAllProduct(req, res){
+    let data = await Product.find({}).populate("store")
+    res.send(data)
+}
+
 
 async function createVariant(req, res){
     let {variantType,color,image,ram,storage,size,product,price,quantity} = req.body
@@ -74,9 +79,18 @@ async function createVariant(req, res){
 }
 
 
-
-async function GetAllProduct(req, res){
-    let data = await Product.find({}).populate("store")
+async function GetAllVariant(req, res){
+    let data = await Variant.find({}).populate("product")
     res.send(data)
 }
-module.exports = {sequreProductUpload,createProduct,createVariant,GetAllProduct}
+
+
+
+async function DeletProduct(req, res){
+    let deletData = req.body.id
+    let data = await Product.findByIdAndDelete(deletData)
+    
+}
+
+
+module.exports = {sequreProductUpload,createProduct,createVariant,GetAllProduct,DeletProduct,GetAllVariant}

@@ -19,4 +19,10 @@ async function becomMarchent(req, res){
 }
 
 
-module.exports = becomMarchent;
+async function AllStore(req, res){
+   let data = await Store.find({owner: "649bb30f2190f4715522b098"})
+   res.send(data)
+}
+
+
+module.exports = {becomMarchent,AllStore};

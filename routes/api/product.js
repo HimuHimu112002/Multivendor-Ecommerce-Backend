@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {sequreProductUpload,createProduct, createVariant,GetAllProduct} = require("../../controllers/productController.js")
+const {sequreProductUpload,createProduct, createVariant,GetAllProduct,DeletProduct,GetAllVariant} = require("../../controllers/productController.js")
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -19,9 +19,11 @@ const upload = multer({ storage: storage })
 
 //,sequreProductUpload,
 router.post("/CreateProduct",createProduct)
-router.post("/CreateProductVarient",upload.single('image'),createVariant)
-
-
 router.get("/GetAllProduct",GetAllProduct)
+router.post("/DeletProduct",DeletProduct)
+
+
+router.post("/CreateProductVarient",upload.single('image'),createVariant)
+router.get("/GetAllVarient",GetAllVariant)
 
 module.exports = router

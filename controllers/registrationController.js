@@ -23,33 +23,35 @@ let registrationController =  async (req, res)=>{
     else {
 
         let duplicateEmail = await User.find({email: email})
-        if(duplicateEmail > 0){
-            return res.send({error: "This email already in used"})
+        if(duplicateEmail.length > 0){
+            return res.send({error: "This email already in used. Try another email"})
         }
 
         bcrypt.hash(password, 10, async function(err, hash) {
+
+            const generator2 = aleaRNGFactory(Date.now());
+            let randomOtpNumber = generator2.uInt32().toString().substring(0, 4)
+
             let user = new User({
                 fullname: fullname,
-                email: email,
                 phone: phone,
+                email: email,
                 password: hash,
+                randomOtp:randomOtpNumber
                 
             })
 
             user.save()
-            const generator2 = aleaRNGFactory(Date.now());
-            let randomOtpNumber = generator2.uInt32().toString().substring(0, 4)
-
-
-            let randonOtpStore = await User.findOneAndUpdate(
-                {email},
-                {$set: {randomOtp:randomOtpNumber}},
-                {new: true}
-                
-            )
-
-            emailSend(email,randonOtpStore.randomOtp)
+            emailSend(email, randomOtpNumber)
             res.send({success: "Registration Successfull Thank You"})
+            
+            // let randonOtpStore = await User.findOneAndUpdate(
+            //     {email},
+            //     {$set: {randomOtp:randomOtpNumber}},
+            //     {new: true}
+                
+            // )
+            // avabeo email er vhitore otp set kora jai and database pathano jai
             
         });
        

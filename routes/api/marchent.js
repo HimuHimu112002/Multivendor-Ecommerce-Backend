@@ -1,7 +1,8 @@
 const express = require('express')
-const becomMarchent = require('../../controllers/marchentController.js')
+const {becomMarchent,AllStore} = require('../../controllers/marchentController.js')
 const router = express.Router()
 
 router.post("/becomemarchent", becomMarchent)
+router.get("/allStore", AllStore)
 
 module.exports = router

@@ -10,7 +10,7 @@ let OtpMatchController = async (req, res)=>{
             await User.findOneAndUpdate(
                 {email},
                 {$unset: {randomOtp:""}},
-                //{new: true}
+                {new: true}
                         
             )
 

@@ -19,7 +19,10 @@ let loginController = async (req, res)=>{
         if(EmailExist.length > 0){
             bcrypt.compare(password, EmailExist[0].password).then(function(result) {
                 if(result){
-                    res.send({success: "Login Successfull Thank You",})
+                    res.send({
+                        success: "Login Successfull Thank You",
+                        role: EmailExist[0].role
+                    })
                 }else{
                     res.json({"error":"password is not matching"})
                 }
